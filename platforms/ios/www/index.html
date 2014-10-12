@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--meta name="viewport" content="user-scalable=yes, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, height=device-height, width=device-width" /-->
+        <title>Learn Languages</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <link href="css/mystyles.css" rel="stylesheet">
+    </head>
+    <body>
+  <nav class="navbar navbar-default" role="navigation">
+   <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Languages</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle languagesMenuItem" data-toggle="dropdown">Select a Language<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" onclick='loadDevanagari()' class="languagesMenuItem" >&#x0926;&#x0947;&#x0935;&#x0928;&#x093e;&#x0917;&#x0930;&#x0940; (Devanagari, Hindi)</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick='loadKannada()' class="languagesMenuItem" >&#x0c95;&#x0ca8;&#x0ccd;&#x0ca8;&#x0ca1; (Kannada)</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li>
+              <a class="btn btn-primary" style="color:red;" href="itsybitsy.html">3D</a>
+        </li>
+      </ul>
+    </div>
+   </div>
+  </nav>
+  
+  <div style="width:100%;overflow-x:hidden;overflow-y:hidden;">
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="" style="padding-left:10%" >
+
+  <!-- Wrapper for slides -->
+  <div id="language_carousel" class="carousel-inner">
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+</div>
+<span class="instructionText"> Practice Letters here:</span>
+<div>
+    <table>
+        <tr>
+            <td>
+                Colour:
+            </td>
+            <td>
+                <select id="ddlColour" onchange="ddlColour_onChange();">
+                    <option value="#000000">Black</option>
+                    <option value="#FF0000">Red</option>
+                    <option value="#00FF00" selected="">Green</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF55BB">Pink</option>
+                    <option value="purple">Purple</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="white">White</option>
+                </select>
+            </td>
+            <td>
+                Line Width:
+            </td>
+            <td>
+                <select id="ddlLineWidth" onchange="ddlLineWidth_onChange();">
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5" selected="">5</option>
+                    <option value="10">10</option>
+                </select>
+            </td>
+            <td>
+                <button id="btnClear" class="clearBtn" onclick="btnClear_onClick();" >Clear</button>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <canvas id="mainCanvas" width="750px" height="450px" style="border: 1px solid #000;"> </canvas>
+            </td>
+            </tr>
+    </table>
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/utilFuncs.js"></script>
+    <script type="text/javascript" src="js/languagesData.js"></script>
+    <script>
+
+    function buildCardTitleElement(str, id, titleClass) {
+        var elem = document.createElement('div');
+        elem.className = "row";
+        var innerDiv = document.createElement('div');
+        innerDiv.className = titleClass;
+        var h2 = document.createElement('span');
+        var elemText = document.createTextNode(str);
+        h2.appendChild(elemText);
+        innerDiv.appendChild(h2);
+        elem.appendChild(innerDiv);
+        elem.onclick = function(event) {
+            var audio = document.getElementById("audio_" + id);
+            if(audio) {
+                if(isIOSBrowser() || isWindowsBrowser())
+                    audio.load();
+                //audio.play();
+                playAudio(audio.id); // For cordova app
+            }
+            drawStringOnCanvas(str);
+            return false;
+        };
+        return elem;
+    }
+
+    function buildImageFor(src, cardId, imgId, audioElem) {
+            var img = document.createElement("img");
+            img.src = src.i;
+            img.className= "alphabetImage";
+            img.style.width = "150px";
+            img.style.height = "150px";
+            var displayAltCaption = false;
+            img.onclick = function(evt) {
+                var e = evt || event;
+                if(isIOSBrowser() || isWindowsBrowser())
+                    audioElem.load();
+                //audioElem.play();
+                playAudio(audioElem.id); // For cordova app
+                drawStringOnCanvas(src.n.join(""));
+                if(src.alt_n) {
+                    displayAltCaption = ! displayAltCaption;
+                    var altCaption = document.getElementById("alt_caption_" + cardId + "_" + imgId);
+                    var caption = document.getElementById("caption_" + cardId + "_" + imgId);
+                    if(displayAltCaption) {
+                        altCaption.style.display = "";
+                        caption.style.display = "none";
+                    }
+                    else {
+                        altCaption.style.display = "none";
+                        caption.style.display = "";
+                    }
+                }
+                e.preventDefault();
+                return false;
+            };
+            // Listen for timeupdate event
+            audioElem.addEventListener("timeupdate", function( e ) {
+                var duration = audioElem.duration;
+                if(isNaN(audioElem.duration))
+                    duration = 1.0; // its highly unlikely to have audio clips of words longer than 1 second.
+                
+                var delta = duration/src.n.length;
+                var intervalNo = parseInt(audioElem.currentTime/delta)+1;
+                if(intervalNo*delta >= duration)
+                    intervalNo--;
+                //console.log( "audio timeupdate fired!", audioElem.currentTime, duration, intervalNo );
+                for(var i in src.n) {
+                    if(!src.n.hasOwnProperty(i))
+                        continue;
+                    var spanNo = parseInt(i)+1;
+                    var spanId = "letter_audio_" + cardId + "_" + imgId + "_" + i;
+                    var span = document.getElementById(spanId);
+                    if(spanNo == intervalNo)
+                        span.style.color = "red";
+                    else
+                        span.style.color = "yellow";
+                }
+            }, false);
+
+            return img;
+    }
+
+    function buildCardForStr(str, id, audios, imagesAudio) {
+        var div = document.createElement("div");
+        //div.className = "newsDivNoImage";
+        var elem = buildCardTitleElement(str, id, "cardTitle2D col-xs-6 col-sm-3 col-md-3 col-lg-2");
+        div.appendChild(elem);
+        var row = document.createElement("div");
+        row.className = "row";
+        for(var i in imagesAudio) {
+            if(!imagesAudio.hasOwnProperty(i))
+                continue;
+            var audio = document.createElement("audio");
+            audio.id = "audio_" + id + "_" + i;
+            audio.controls = false;
+            audio.style.height = "0px";
+            for(var a in imagesAudio[i].a) {
+                if(!imagesAudio[i].a.hasOwnProperty(a))
+                    continue;
+                var source = document.createElement("source");
+                source.src = imagesAudio[i].a[a];
+                source.type = "audio/" + source.src.substring(source.src.lastIndexOf(".")+1);
+                audio.appendChild(source);
+            }
+            div.appendChild(audio);
+            var img = buildImageFor(imagesAudio[i], id, i, audio);
+            var td = document.createElement("div");
+            td.className = "col-xs-6 col-sm-3 col-md-3 col-lg-2";
+            var thumbnail = document.createElement("div");
+            thumbnail.className = "thumbnail";
+            thumbnail.appendChild(img);
+            var caption = document.createElement("div");
+            caption.className = "cardCaption caption";
+            caption.id = "caption_" + id + "_" + i;
+            for(var j in imagesAudio[i].n) {
+                if(!imagesAudio[i].n.hasOwnProperty(j))
+                    continue;
+                var span = document.createElement("span");
+                span.appendChild(document.createTextNode(imagesAudio[i].n[j]));
+                span.id = "letter_audio_" + id + "_" + i + "_" + j;
+                span.onclick = img.onclick;
+                caption.appendChild(span);
+            }
+            thumbnail.appendChild(caption);
+            if(imagesAudio[i].alt_n) {
+                caption = document.createElement("div");
+                caption.className = "cardCaption caption";
+                caption.id = "alt_caption_" + id + "_" + i;
+                caption.style.display = "none";
+                caption.appendChild(document.createTextNode(imagesAudio[i].alt_n));
+                thumbnail.appendChild(caption);
+            }
+            td.appendChild(thumbnail);
+            row.appendChild(td);
+        }
+        div.appendChild(row);
+        var audio = document.createElement("audio");
+        audio.id = "audio_" + id;
+        audio.controls = false;
+        for(var a in audios) {
+            if(!audios.hasOwnProperty(a))
+                continue;
+            var source = document.createElement("source");
+            source.src = audios[a];
+            source.type = "audio/" + audios[a].substring(audios[a].lastIndexOf(".")+1);
+            audio.appendChild(source);
+        }
+        div.appendChild(audio);
+        var backgroundImage = null;
+
+        return {bgImage: backgroundImage, domElement: div, link: null};
+    }
+
+    function loadData(data) {
+        var carousel_container = document.getElementById('language_carousel');
+        while(carousel_container.firstChild)
+            carousel_container.removeChild(carousel_container.firstChild);
+        
+        var text = g_titleCardText;
+        var initialDiv = document.createElement("div");
+        initialDiv.className = "item";
+        initialDiv.innerHTML = text;
+        carousel_container.appendChild(initialDiv);
+        
+        for(var id in data) {
+            if(!data.hasOwnProperty(id))
+                continue;
+            var domBg = buildCardForStr(data[id].k, parseInt(id)+1, data[id].a, data[id].i);
+            if(parseInt(id) == 0)
+                domBg.domElement.className += " item active";
+            else
+                domBg.domElement.className += " item";
+            carousel_container.appendChild(domBg.domElement);
+        }
+    }
+
+    loadDevanagari();
+
+    $(document).ready(function() {  
+         $("#carousel-example-generic").swiperight(function(evt) {  
+              $(this).carousel('prev');
+              //var e = evt || event;
+              //e.preventDefault();
+                });  
+           $("#carousel-example-generic").swipeleft(function(evt) {  
+              $(this).carousel('next');
+              //var e = evt || event;
+              //e.preventDefault();
+       });  
+    });
+
+
+    </script>
+    <script type="text/javascript" src="js/scribble-util.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
