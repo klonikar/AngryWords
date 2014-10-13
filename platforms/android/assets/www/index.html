@@ -281,9 +281,16 @@
         }
     }
 
+    function mainCanvas_orientationChange() {
+        if(document.getElementById("carousel-example-generic"))
+            mainCanvas.width = document.getElementById("carousel-example-generic").offsetWidth;
+    }
+
+    mainCanvas_orientationChange();
     loadDevanagari();
 
-    $(document).ready(function() {  
+    $(document).ready(function() {
+        window.addEventListener("orientationchange", mainCanvas_orientationChange, false);
         $("#carousel-example-generic").swiperight(function(evt) {  
             $(this).carousel('prev');
             var e = evt || event;
