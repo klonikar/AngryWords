@@ -26,8 +26,10 @@ window.onload = function () {
 
     //Get canvas context
     canvasContext = mainCanvas.getContext('2d');
+    mainCanvas_orientationChange();
 
     //Attach the event handlers
+    window.addEventListener("orientationchange", mainCanvas_orientationChange, false);
     mainCanvas.addEventListener('mousemove', mainCanvas_mouseMove, false);
     mainCanvas.addEventListener('mousedown', mainCanvas_mouseDown, false);
     mainCanvas.addEventListener('mouseup', mainCanvas_mouseUp, false);
@@ -36,6 +38,11 @@ window.onload = function () {
     mainCanvas.addEventListener('touchmove', mainCanvas_mouseMove, false);
     mainCanvas.addEventListener('touchend', mainCanvas_mouseUp, false);
     btnClear_onClick();
+}
+
+function mainCanvas_orientationChange() {
+    if(document.getElementById("carousel-example-generic"))
+        mainCanvas.width = document.getElementById("carousel-example-generic").offsetWidth;
 }
 
 function postButtonHandler() {
