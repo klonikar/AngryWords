@@ -5,6 +5,8 @@ var yCoords = new Array();
 var colour = new Array();
 var isMouseDownEvent = new Array();
 var lineWidth = new Array();
+var ddlColour = "Green";
+var ddlLineWidth = "5";
 
 //Attach the mouse event handlers to the canvas after the window loads
 window.onload = function () {
@@ -100,6 +102,8 @@ function drawGrid(gridColor) {
 function mainCanvas_mouseDown(args) {
     var evt = args || event;
     var mainCanvasPosition = mainCanvas.getBoundingClientRect();
+    if(isAndroidBrowser() && !evt.hasOwnProperty("targetTouches"))
+        return;
     var x = (isAndroidBrowser() ? (evt.targetTouches[0].pageX - mainCanvasPosition.left - window.scrollX) : evt.layerX);
     var y = (isAndroidBrowser() ? (evt.targetTouches[0].pageY - mainCanvasPosition.top - window.scrollY) : evt.layerY);
     xCoords.push(x);
@@ -116,6 +120,8 @@ function mainCanvas_mouseMove(args) {
     var evt = args || event;
     if (doDraw) {
         var mainCanvasPosition = mainCanvas.getBoundingClientRect();
+        if(isAndroidBrowser() && !evt.hasOwnProperty("targetTouches"))
+            return;
         var x = (isAndroidBrowser() ? (evt.targetTouches[0].pageX - mainCanvasPosition.left - window.scrollX) : evt.layerX);
         var y = (isAndroidBrowser() ? (evt.targetTouches[0].pageY - mainCanvasPosition.top - window.scrollY) : evt.layerY);
         xCoords.push(x);
@@ -164,17 +170,15 @@ function redraw(ctx) {
 }
 
 //Change the drawing colour
-function ddlColour_onChange() {
-
-    var ddlColour = document.getElementById('ddlColour');
-    canvasContext.strokeStyle = ddlColour.options[ddlColour.selectedIndex].value;
+function ddlColour_onChange(selectedColor) {
+    ddlColour = selectedColor;
+    canvasContext.strokeStyle = ddlColour;
 }
 
 //Change the line width
-function ddlLineWidth_onChange() {
-
-    var ddlLineWidth = document.getElementById('ddlLineWidth');
-    canvasContext.lineWidth = ddlLineWidth.options[ddlLineWidth.selectedIndex].value;
+function ddlLineWidth_onChange(selectedLineWidth) {
+    ddlLineWidth = selectedLineWidth;
+    canvasContext.lineWidth = ddlLineWidth;
 }
 
 //Clear canvas
@@ -188,8 +192,8 @@ function btnClear_onClick() {
     mainCanvas.width = mainCanvas.width;
     drawGrid("#EEEEEE");
 
-    ddlColour_onChange();
-    ddlLineWidth_onChange();
+    canvasContext.strokeStyle = ddlColour;
+    canvasContext.lineWidth = ddlLineWidth;
 }
 
 function getBoxes() {

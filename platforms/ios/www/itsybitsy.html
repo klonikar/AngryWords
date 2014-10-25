@@ -3,14 +3,15 @@
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8" />
     <!--meta name="viewport" content="width=device-width" /-->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <!--meta name="viewport" content="user-scalable=yes, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, height=device-height, width=device-width" /-->
+    <meta name="viewport" content="user-scalable=no, initial-scale=0.7, maximum-scale=1, minimum-scale=0.7, width=device-width, height=device-height" />
+    <!--meta name="viewport" content="user-scalable=yes, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, height=device-height, width=device-width, target-densitydpi=device-dpi" /-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
 	<title>Learn languages</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/coverflow.css" rel="stylesheet" />
     <link href="css/mystyles.css" rel="stylesheet" >
+    <!--link rel="stylesheet" type="text/css" href="css/index.css" /-->
 
 </head>
 <body>
@@ -24,7 +25,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Languages</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -38,7 +38,32 @@
           </ul>
         </li>
         <li>
-              <a class="btn btn-primary" style="color:red;" href="index.html">2D</a>
+              <a class="btn btn-primary clearBtn" style="color:red;" href="index.html">2D</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle languagesMenuItem" data-toggle="dropdown">Pen Color<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" onclick='ddlColour_onChange("#000000");' class="languagesMenuItem" style="color:#000000" >Black</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("#FF0000");' class="languagesMenuItem" style="color:#FF0000" >Red</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("#00FF00");' class="languagesMenuItem" style="color:#00FF00" >Green</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("#0000FF");' class="languagesMenuItem" style="color:#0000FF" >Blue</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("#FF55BB");' class="languagesMenuItem" style="color:#FF55BB" >Pink</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("purple");' class="languagesMenuItem" style="color:purple" >Purple</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("yellow");' class="languagesMenuItem" style="color:yellow" >Yellow</a></li>
+            <li><a href="#" onclick='ddlColour_onChange("white");' class="languagesMenuItem" style="color:white;background-color:black" >White</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle languagesMenuItem" data-toggle="dropdown">Pen Width<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" onclick='ddlLineWidth_onChange("1");' class="languagesMenuItem" >1</a></li>
+            <li><a href="#" onclick='ddlLineWidth_onChange("3");' class="languagesMenuItem" >3</a></li>
+            <li><a href="#" onclick='ddlLineWidth_onChange("5");' class="languagesMenuItem" >5</a></li>
+            <li><a href="#" onclick='ddlLineWidth_onChange("10");' class="languagesMenuItem" >10</a></li>
+          </ul>
+        </li>
+        <li>
+              <a class="btn btn-primary clearBtn" href="#" onclick="btnClear_onClick();">Clear</a>
         </li>
       </ul>
     </div>
@@ -272,50 +297,13 @@
     loadDevanagari();
 
 	</script>
-<script type="text/javascript" src="js/scribble-util.js"></script>
+    <script type="text/javascript" src="js/scribble-util.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 
 <span class="instructionText"> Practice Letters here:</span>
 <div>
-    <table>
-        <tr>
-            <td>
-                Colour:
-            </td>
-            <td>
-                <select id="ddlColour" onchange="ddlColour_onChange();">
-                    <option value="#000000">Black</option>
-                    <option value="#FF0000">Red</option>
-                    <option value="#00FF00" selected="">Green</option>
-                    <option value="#0000FF">Blue</option>
-                    <option value="#FF55BB">Pink</option>
-                    <option value="purple">Purple</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="white">White</option>
-                </select>
-            </td>
-            <td>
-                Line Width:
-            </td>
-            <td>
-                <select id="ddlLineWidth" onchange="ddlLineWidth_onChange();">
-                    <option value="1">1</option>
-                    <option value="3">3</option>
-                    <option value="5" selected="">5</option>
-                    <option value="10">10</option>
-                </select>
-            </td>
-            <td>
-                <button id="btnClear" class="clearBtn" onclick="btnClear_onClick();" >Clear</button>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td>
-                <canvas id="mainCanvas" width="750px" height="450px" style="border: 1px solid #000;"> </canvas>
-            </td>
-            </tr>
-    </table>
+    <canvas id="mainCanvas" width="750px" height="450px" style="border: 1px solid #000;"> </canvas>
 </div>
 
 <div style="display:none;width:480px;">

@@ -17,10 +17,16 @@ function drawStringOnCanvas(str) {
     canvasContext.fillText(str, 25, 150);
 }
 
+var my_media = null;
+
 function playAudio(id) {
     var audioElement = document.getElementById(id);
     var url = audioElement.firstChild.getAttribute('src');
-    var my_media = new Media("/android_asset/www/" + url,
+    if(my_media) {
+        my_media.stop();
+        my_media.release();
+    }
+    my_media = new Media("/android_asset/www/" + url,
             // success callback
              function () { /*console.log("playAudio():Audio Success"); */ },
             // error callback
