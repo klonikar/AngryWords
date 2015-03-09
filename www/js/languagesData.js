@@ -18,7 +18,7 @@
         {"k": "\u0916", "a": ["audio/deva_kha.mp3"], "i": [{"i": "images/khargosh.jpg", "n": ["\u0916", "\u0930", "\u0917\u094B", "\u0936"], "a": ["audio/deva_khargosh.mp3"]}]},
         {"k": "\u0917", "a": ["audio/deva_ga.mp3"], "i": [{"i": "images/gaay.jpg", "n": ["\u0917\u093E", "\u092F"], "a": ["audio/deva_gaay.mp3"]}]},
         {"k": "\u0918", "a": ["audio/deva_gha.mp3"], "i": [{"i": "images/ghadi.jpg", "n": ["\u0918", "\u0921\u0940"], "a": ["audio/deva_ghadi.mp3"]}]},
-        {"k": "\u0919", "a": ["audio/deva_nga.mp3"], "i": [{"i": "images/wangamay.jpg", "n": ["\u0935\u093E\u0902", "\u0919", "\u092E", "\u092F"], "a": ["audio/deva_wangamay.mp3"]}]},
+        {"k": "\u0919", "a": ["audio/deva_nga.mp3"], "i": [{"i": "images/wangamay.jpg", "n": ["\u0935\u093E", "\u0919", "\u092E", "\u092F"], "a": ["audio/deva_wangamay.mp3"]}]},
 
         {"k": "\u091A", "a": ["audio/deva_cha.mp3"], "i": [{"i": "images/charkha.jpg", "n": ["\u091A", "\u0930", "\u0916\u093E"], "a": ["audio/deva_charkha.mp3"]}]},
         {"k": "\u091B", "a": ["audio/deva_chha.mp3"], "i": [{"i": "images/chhatri.jpg", "n": ["\u091B", "\u0924\u094D\u0930\u0940"], "a": ["audio/deva_chhatri.mp3"]}]},
@@ -102,7 +102,7 @@
         {"k": "\u0C96", "a": ["audio/deva_kha.mp3"], "i": [{"i": "images/kannada/khadg.jpg", "n": ["\u0C96", "\u0CA1\u0CCD\u0C97"], "alt_n": "\u0916\u0921\u094D\u0917\u093E", "a": ["audio/kannada/khadg.mp3"]}]},
         {"k": "\u0C97", "a": ["audio/deva_ga.mp3"], "i": [{"i": "images/kannada/ganapati.jpg", "n": ["\u0C97", "\u0CA3", "\u0CAA", "\u0CA4\u0CBF"], "alt_n": "\u0917\u0923\u092A\u0924\u093F", "a": ["audio/kannada/ganapati.mp3"]}]},
         {"k": "\u0C98", "a": ["audio/deva_gha.mp3"], "i": [{"i": "images/kannada/ghante.jpg", "n": ["\u0C98\u0C82", "\u0C9F\u0CC6"], "alt_n": "\u0918\u0902\u091F\u0946", "a": ["audio/kannada/ghante.mp3"]}]},
-        {"k": "\u0C99", "a": ["audio/deva_nga.mp3"], "i": [{"i": "images/wangamay.jpg", "n": ["\u0CB5\u0CBE\u0C82", "\u0C99", "\u0CAE", "\u0CAF"], "alt_n": "\u0935\u093E\u0902\u0919\u092E\u092F", "a": ["audio/deva_wangamay.mp3"]}]},
+        {"k": "\u0C99", "a": ["audio/deva_nga.mp3"], "i": [{"i": "images/wangamay.jpg", "n": ["\u0CB5\u0CBE", "\u0C99", "\u0CAE", "\u0CAF"], "alt_n": "\u0935\u093E\u0919\u092E\u092F", "a": ["audio/deva_wangamay.mp3"]}]},
 
         {"k": "\u0C9A", "a": ["audio/deva_cha.mp3"], "i": [{"i": "images/kannada/chandu.jpg", "n": ["\u0C9A\u0C82", "\u0CA1\u0CC1"], "alt_n": "\u091A\u0902\u0921\u0941", "a": ["audio/kannada/chandu.mp3"]}]},
         {"k": "\u0C9B", "a": ["audio/deva_chha.mp3"], "i": [{"i": "images/chhatri.jpg", "n": ["\u0C9B", "\u0CA4\u0CCD\u0CB0\u0CBF"], "alt_n": "\u091B\u0924\u094D\u0930\u093F", "a": ["audio/deva_chhatri.mp3"]}]},
