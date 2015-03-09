@@ -10,6 +10,18 @@
     margin-left: 1em;
 }
 
+.allCardsBtn {
+    background-color: rgb(255, 189, 48);
+    border: 1px solid rgb(255, 189, 48);
+    color: #FFF;
+    font-weight: bold;
+    width: 8em;
+    height: 3em;
+    cursor: pointer;
+    vertical-align: top;
+    margin-left: 1em;
+}
+
 .langSelector {
     font-family: Helvetica;
     font-size: 18px;

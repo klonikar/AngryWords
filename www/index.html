@@ -70,6 +70,9 @@
           </ul>
         </li>
         <li>
+              <a class="btn btn-primary allCardsBtn" href="#" id="btnAllCardsToggle" onclick="btnAllCardsToggle_onClick();">All Cards</a>
+        </li>
+        <li>
               <a class="btn btn-primary clearBtn" href="#" onclick="btnClear_onClick();">Clear</a>
         </li>
       </ul>
@@ -279,6 +282,30 @@
                 domBg.domElement.className += " item";
             carousel_container.appendChild(domBg.domElement);
         }
+    }
+
+    var g_isCarouselMode = true;
+
+    function btnAllCardsToggle_onClick() {
+        var carousel_container = document.getElementById('language_carousel');
+        var btnAllCardsToggle = document.getElementById("btnAllCardsToggle");
+        if(g_isCarouselMode) {
+            carousel_container.removeChild(carousel_container.firstChild); // remove title card
+            carousel_container.className = "";
+            btnAllCardsToggle.removeChild(btnAllCardsToggle.firstChild);
+            btnAllCardsToggle.appendChild(document.createTextNode("Carousel"));
+        }
+        else {
+            carousel_container.className = "carousel-inner";
+            btnAllCardsToggle.removeChild(btnAllCardsToggle.firstChild);
+            btnAllCardsToggle.appendChild(document.createTextNode("All Cards"));
+            var text = g_titleCardText;
+            var initialDiv = document.createElement("div");
+            initialDiv.className = "item";
+            initialDiv.innerHTML = text;
+            carousel_container.insertBefore(initialDiv, carousel_container.firstChild);
+        }
+        g_isCarouselMode = ! g_isCarouselMode;
     }
 
     function mainCanvas_orientationChange() {
