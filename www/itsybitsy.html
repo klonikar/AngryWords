@@ -151,7 +151,7 @@
             var img = document.createElement("img");
             img.src = src.i;
             img.className = "alphabetImage";
-			var displayAltCaption = false;
+			var displayAltCaption = 0;
             img.onclick = function(evt) {
                 var e = evt || event;
                 if(isIOSBrowser() || isWindowsBrowser())
@@ -160,17 +160,28 @@
                 playAudio(audioElem.id); // For cordova app
                 drawStringOnCanvas(src.n.join(""));
 				if(src.alt_n) {
-					displayAltCaption = ! displayAltCaption;
-					var altCaption = document.getElementById("alt_caption_" + cardId + "_" + imgId);
-					var caption = document.getElementById("caption_" + cardId + "_" + imgId);
-					if(displayAltCaption) {
-						altCaption.style.display = "";
-						caption.style.display = "none";
-					}
-					else {
-						altCaption.style.display = "none";
-						caption.style.display = "";
-					}
+                    // first set all alternate languages captions to display:none
+                    for(var j in src.alt_n) {
+                        if(!src.alt_n.hasOwnProperty(j))
+                            continue;
+                        document.getElementById("alt_caption_" + cardId + "_" + imgId + "_" + j).style.display = "none";
+                    }
+
+                    // then set the current alt caption or caption depending on the value of displayAltCaption
+                    var altCaption = document.getElementById("alt_caption_" + cardId + "_" + imgId + "_" + displayAltCaption);
+                    var caption = document.getElementById("caption_" + cardId + "_" + imgId);
+
+                    if(displayAltCaption++ >= src.alt_n.length)
+                        displayAltCaption = 0;
+
+                    if(displayAltCaption > 0) {
+                        altCaption.style.display = "";
+                        caption.style.display = "none";
+                    }
+                    else {
+                        caption.style.display = "";
+                    }
+
 				}
                 e.preventDefault();
                 return false;
@@ -248,11 +259,15 @@
             }
 			td.appendChild(caption);
             if(imagesAudio[i].alt_n) {
-				caption = document.createElement("div");
-				caption.id = "alt_caption_" + id + "_" + i;
-				caption.style.display = "none";
-                caption.appendChild(document.createTextNode(imagesAudio[i].alt_n));
-				td.appendChild(caption);
+                for(var j in imagesAudio[i].alt_n) {
+                    if(!imagesAudio[i].alt_n.hasOwnProperty(j))
+                        continue;
+                    var alt_caption = document.createElement("div");
+                    alt_caption.id = "alt_caption_" + id + "_" + i + "_" + j;
+                    alt_caption.style.display = "none";
+                    alt_caption.appendChild(document.createTextNode(imagesAudio[i].alt_n[j]));
+                    td.appendChild(alt_caption);
+                }
             }
             tr.appendChild(td);
         }

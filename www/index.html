@@ -139,7 +139,7 @@
             img.className= "alphabetImage";
             img.style.width = "150px";
             img.style.height = "150px";
-            var displayAltCaption = false;
+            var displayAltCaption = 0;
             img.onclick = function(evt) {
                 var e = evt || event;
                 if(isIOSBrowser() || isWindowsBrowser())
@@ -148,15 +148,25 @@
                 playAudio(audioElem.id); // For cordova app
                 drawStringOnCanvas(src.n.join(""));
                 if(src.alt_n) {
-                    displayAltCaption = ! displayAltCaption;
-                    var altCaption = document.getElementById("alt_caption_" + cardId + "_" + imgId);
+                    // first set all alternate languages captions to display:none
+                    for(var j in src.alt_n) {
+                        if(!src.alt_n.hasOwnProperty(j))
+                            continue;
+                        document.getElementById("alt_caption_" + cardId + "_" + imgId + "_" + j).style.display = "none";
+                    }
+
+                    // then set the current alt caption or caption depending on the value of displayAltCaption
+                    var altCaption = document.getElementById("alt_caption_" + cardId + "_" + imgId + "_" + displayAltCaption);
                     var caption = document.getElementById("caption_" + cardId + "_" + imgId);
-                    if(displayAltCaption) {
+
+                    if(displayAltCaption++ >= src.alt_n.length)
+                        displayAltCaption = 0;
+
+                    if(displayAltCaption > 0) {
                         altCaption.style.display = "";
                         caption.style.display = "none";
                     }
                     else {
-                        altCaption.style.display = "none";
                         caption.style.display = "";
                     }
                 }
@@ -233,12 +243,16 @@
             }
             thumbnail.appendChild(caption);
             if(imagesAudio[i].alt_n) {
-                caption = document.createElement("div");
-                caption.className = "cardCaption caption";
-                caption.id = "alt_caption_" + id + "_" + i;
-                caption.style.display = "none";
-                caption.appendChild(document.createTextNode(imagesAudio[i].alt_n));
-                thumbnail.appendChild(caption);
+                for(var j in imagesAudio[i].alt_n) {
+                    if(!imagesAudio[i].alt_n.hasOwnProperty(j))
+                        continue;
+                    var alt_caption = document.createElement("div");
+                    alt_caption.className = "cardCaption caption";
+                    alt_caption.id = "alt_caption_" + id + "_" + i + "_" + j;
+                    alt_caption.style.display = "none";
+                    alt_caption.appendChild(document.createTextNode(imagesAudio[i].alt_n[j]));
+                    thumbnail.appendChild(alt_caption);
+                }
             }
             td.appendChild(thumbnail);
             row.appendChild(td);
@@ -266,11 +280,13 @@
         while(carousel_container.firstChild)
             carousel_container.removeChild(carousel_container.firstChild);
         
-        var text = g_titleCardText;
-        var initialDiv = document.createElement("div");
-        initialDiv.className = "item";
-        initialDiv.innerHTML = text;
-        carousel_container.appendChild(initialDiv);
+        if(g_isCarouselMode) {
+            var text = g_titleCardText;
+            var initialDiv = document.createElement("div");
+            initialDiv.className = "item";
+            initialDiv.innerHTML = text;
+            carousel_container.appendChild(initialDiv);
+        }
         
         for(var id in data) {
             if(!data.hasOwnProperty(id))
