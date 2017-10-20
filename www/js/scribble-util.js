@@ -102,7 +102,9 @@ function drawGrid(gridColor) {
 function mainCanvas_mouseDown(args) {
     var evt = args || event;
     var mainCanvasPosition = mainCanvas.getBoundingClientRect();
-    if(isAndroidBrowser() && !evt.hasOwnProperty("targetTouches"))
+    var isAndroid = isAndroidBrowser();
+    var hasTargetTouches = evt.hasOwnProperty("targetTouches") || "targetTouches" in evt || evt.targetTouches != "undefined";
+    if(isAndroid && !hasTargetTouches)
         return;
     var x = (isAndroidBrowser() ? (evt.targetTouches[0].pageX - mainCanvasPosition.left - window.scrollX) : evt.layerX);
     var y = (isAndroidBrowser() ? (evt.targetTouches[0].pageY - mainCanvasPosition.top - window.scrollY) : evt.layerY);
@@ -120,8 +122,10 @@ function mainCanvas_mouseMove(args) {
     var evt = args || event;
     if (doDraw) {
         var mainCanvasPosition = mainCanvas.getBoundingClientRect();
-        if(isAndroidBrowser() && !evt.hasOwnProperty("targetTouches"))
-            return;
+        var isAndroid = isAndroidBrowser();
+        var hasTargetTouches = evt.hasOwnProperty("targetTouches") || "targetTouches" in evt || evt.targetTouches != "undefined";
+        if(isAndroid && !hasTargetTouches)
+             return;
         var x = (isAndroidBrowser() ? (evt.targetTouches[0].pageX - mainCanvasPosition.left - window.scrollX) : evt.layerX);
         var y = (isAndroidBrowser() ? (evt.targetTouches[0].pageY - mainCanvasPosition.top - window.scrollY) : evt.layerY);
         xCoords.push(x);
