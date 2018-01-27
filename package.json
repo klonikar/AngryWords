@@ -1,0 +1,13 @@
+{
+  "name": "com.sidvin.angrywords",
+  "version": "0.0.4",
+  "displayName": "Angry Words",
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {
+    "cordova-android": "^7.0.0"
+  }
+}
