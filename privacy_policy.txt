@@ -1,3 +1,0 @@
-Although this app asks for permissions like android.permission.RECORD_AUDIO, android.permission.READ_PHONE_STATE, it does not them. These permissions are needed only because media playing APIs require these permissions.
-
-The app is open source and it can be easily verified that the app does not record audio or read phone state.
