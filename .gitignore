@@ -13,9 +13,9 @@ gen
 out
 # Gradle builds
 /build
-.DS_Store
-platforms
+**/.DS_Store
 plugins
 node_modules
 **/allkannada*
 **/package-lock.json
+platforms/android/CordovaLib/**
