@@ -1,0 +1,4 @@
+#Sun Jan 28 20:05:27 IST 2018
+base.0=/Users/klonikar/learning/AngryWords/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+file.0=/Users/klonikar/learning/AngryWords/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
